@@ -12,5 +12,4 @@ app.use(cookieParser())
 
 app.use("/api/auth", authRoute)
 
-
 module.exports = app
