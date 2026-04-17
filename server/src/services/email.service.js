@@ -40,7 +40,6 @@ const sendEmail = async (to, subject, text, html) => {
   }
 };
 
-
 async function sendEmailRegister(email, name) {
   // console.log("heyyyy")
   const subject = `Welcome to Our Website`
