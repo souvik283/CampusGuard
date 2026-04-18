@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import Auth from "./AuthPage";
 
 const ShieldIcon = () => (
   <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -95,7 +96,7 @@ const ArrowRight = () => (
 );
 
 
-export default function TruOfferLanding() {
+export default function HeroSection() {
   const [visible, setVisible] = useState(false);
     const [hover1, setHover1] = useState(false);
     const [hover2, setHover2] = useState(false);
@@ -106,7 +107,7 @@ export default function TruOfferLanding() {
   }, []);
 
   return (
-    <div style={{ fontFamily: "'DM Sans', sans-serif", background: "white", minHeight: "100vh", position: "relative", overflow: "hidden" }}>
+    <div style={{ fontFamily: "'DM Sans', sans-serif", background: "black", minHeight: "100vh", position: "relative", overflow: "hidden" }}>
       {/* Google Font */}
       <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700;800&display=swap" rel="stylesheet" />
 
@@ -116,15 +117,15 @@ export default function TruOfferLanding() {
         alignItems: "center",
         justifyContent: "space-between",
         padding: "18px 48px",
-        borderBottom: "0.5px solid #e5e7eb",
-        background: "white",
-        position: "sticky",
+        boxShadow: "10px 2px 10px  #434343",
+        background: "#121212",
+        position: "static",
         top: 0,
         zIndex: 100,
       }}>
         <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
           <ShieldIcon />
-          <span style={{ fontSize: 18, fontWeight: 700, color: "#111" }}>CampusGuard</span>
+          <span style={{ fontSize: 18, fontWeight: 700, color: "#e4e3e3" }}>CampusGuard</span>
         </div>
         <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
           <button style={{
@@ -139,7 +140,11 @@ export default function TruOfferLanding() {
             transition: "0.3s",
           }}
           onMouseEnter={()=> setHover1(true)}
-          onMouseLeave={()=> setHover1(false)}>
+          onMouseLeave={()=> setHover1(false)}
+          onClick={()=>{
+            <Auth/>
+          }}
+          >
             Register/ Login
           </button>
           <button style={{
@@ -181,13 +186,13 @@ export default function TruOfferLanding() {
           {/* Badge */}
           <span style={{
             display: "inline-block",
-            border: "1px solid #d1d5db",
+            border: "1px solid #686869",
             borderRadius: 20,
             padding: "5px 14px",
             fontSize: 11,
-            fontWeight: 500,
+            fontWeight: 550,
             letterSpacing: "0.08em",
-            color: "#555",
+            color: "#cbcaca",
             textTransform: "uppercase",
             marginBottom: 28,
           }}>
@@ -195,10 +200,10 @@ export default function TruOfferLanding() {
           </span>
 
           {/* Headline */}
-          <h1 style={{ fontSize: 54, fontWeight: 800, lineHeight: 1.08, color: "#111", marginBottom: 0 }}>
+          <h1 style={{ fontSize: 54, fontWeight: 800, lineHeight: 1.08, color: "#2563EB", marginBottom: 0 }}>
             Verify Job Offers.
           </h1>
-          <h1 style={{ fontSize: 54, fontWeight: 800, lineHeight: 1.08, color: "#2563EB", marginBottom: 0 }}>
+          <h1 style={{ fontSize: 54, fontWeight: 800, lineHeight: 1.08, color: "#b8b8ba", marginBottom: 0 }}>
             Protect Your Future.
           </h1>
 
@@ -221,6 +226,16 @@ export default function TruOfferLanding() {
               display: "flex",
               alignItems: "center",
               gap: 8,
+            }}
+            onMouseEnter={e => {
+              e.currentTarget.style.background = "#1d4ed8";
+              e.currentTarget.style.transform = "translateY(-2px)";
+              e.currentTarget.style.boxShadow = "0 8px 24px rgba(37, 99, 235, 0.4)";
+            }}
+             onMouseLeave={e => {
+              e.currentTarget.style.background = "#2563EB";
+              e.currentTarget.style.transform = "translateY(0)";
+              e.currentTarget.style.boxShadow = "0 4px 16px rgba(37, 99, 235, 0.3)";
             }}>
               Start Verifying Free <ArrowRight />
             </button>
@@ -233,6 +248,16 @@ export default function TruOfferLanding() {
               fontSize: 15,
               fontWeight: 500,
               cursor: "pointer",
+            }}
+            onMouseEnter={e => {
+              e.currentTarget.style.background = "#f5f5f8";
+              e.currentTarget.style.transform = "translateY(-2px)";
+              e.currentTarget.style.boxShadow = "0 8px 24px rgba(76, 77, 78, 0.4)";
+            }}
+            onMouseLeave={e => {
+              e.currentTarget.style.background = "#d1d5db";
+              e.currentTarget.style.transform = "translateY(0)";
+              e.currentTarget.style.boxShadow = "0 4px 16px rgba(231, 232, 235, 0.3)";
             }}>
               Browse Verified Jobs
             </button>
@@ -245,7 +270,7 @@ export default function TruOfferLanding() {
               { value: "₹2.5Cr+", label: "Saved for Students" },
             ].map((s) => (
               <div key={s.label}>
-                <div style={{ fontSize: 26, fontWeight: 800, color: "#111" }}>{s.value}</div>
+                <div style={{ fontSize: 26, fontWeight: 800, color: "#2563EB" }}>{s.value}</div>
                 <div style={{ fontSize: 13, color: "#9ca3af", marginTop: 2 }}>{s.label}</div>
               </div>
             ))}
