@@ -124,8 +124,8 @@ function FCard({ emoji, title, desc, checks, color, delay }) {
 
 function LandingPage({ onLogin, onGetStarted }) {
 
-      const [hover1, setHover1] = useState(false);
-    const [hover2, setHover2] = useState(false);
+  const [hover1, setHover1] = useState(false);
+  const [hover2, setHover2] = useState(false);
 
   const [vis, setVis] = useState(false);
   useEffect(() => { const t = setTimeout(() => setVis(true), 60); return () => clearTimeout(t); }, []);
@@ -134,7 +134,7 @@ function LandingPage({ onLogin, onGetStarted }) {
     <div style={{ fontFamily: "'DM Sans',sans-serif", background: "white", minHeight: "100vh" }}>
       <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
-            <nav style={{
+      <nav style={{
         display: "flex",
         alignItems: "center",
         justifyContent: "space-between",
@@ -159,17 +159,17 @@ function LandingPage({ onLogin, onGetStarted }) {
             cursor: "pointer",
             backgroundColor: hover1 ? "#2563EB" : "#e9eaed",
             color: hover1 ? "White" : "Black",
-            padding: hover1 ? "11px 22px": "9px 20px",
+            padding: hover1 ? "11px 22px" : "9px 20px",
             transition: "0.3s",
           }}
-          onMouseEnter={()=> setHover1(true)}
-          onMouseLeave={()=> setHover1(false)}
-          onClick={onLogin}
+            onMouseEnter={() => setHover1(true)}
+            onMouseLeave={() => setHover1(false)}
+            onClick={onLogin}
           // onClick={()=> navigate("/auth")}
           >
             Register/ Login
           </button>
-                    <button style={{
+          <button style={{
             border: "none",
             borderRadius: 8,
             fontSize: 14,
@@ -177,12 +177,12 @@ function LandingPage({ onLogin, onGetStarted }) {
             cursor: "pointer",
             backgroundColor: hover2 ? "#e9eaed" : "#2563EB",
             color: hover2 ? "Black" : "white",
-            padding: hover2 ? "11px 22px": "9px 20px",
+            padding: hover2 ? "11px 22px" : "9px 20px",
             transition: "0.3s",
           }}
-          onMouseEnter={()=> setHover2(true)}
-          onMouseLeave={()=> setHover2(false)}
-          onClick={onGetStarted}>
+            onMouseEnter={() => setHover2(true)}
+            onMouseLeave={() => setHover2(false)}
+            onClick={onGetStarted}>
             Get Started
           </button>
         </div>
@@ -202,7 +202,7 @@ function LandingPage({ onLogin, onGetStarted }) {
             </button>
             <button style={{ background: "white", color: "#111", border: "1.5px solid #d1d5db", padding: "14px 28px", borderRadius: 9, fontSize: 15, fontWeight: 500, cursor: "pointer", fontFamily: "'DM Sans',sans-serif" }}>Browse Verified Jobs</button>
           </div>
-          
+
         </div>
         <div style={{ flex: "0 0 auto", opacity: vis ? 1 : 0, transform: vis ? "translateY(0)" : "translateY(24px)", transition: "opacity .7s ease .15s, transform .7s ease .15s" }}>
           <div style={{ width: 340, height: 340, background: "linear-gradient(135deg,#eff6ff,#dbeafe)", borderRadius: 24, display: "flex", alignItems: "center", justifyContent: "center" }}>
@@ -427,32 +427,34 @@ function VerifyDashboard({ onBack }) {
 
   const switchTool = t => { setActiveTool(t); setInputVal(""); setFile(null); setResult(null); setError(null); };
 
-  const handleSubmit = async () => {
-    setLoading(true); setResult(null); setError(null);
-    try {
-      let response;
-      if (activeTool.type === "file") {
-        if (!file) { setError("Please select a file to upload."); setLoading(false); return; }
-        const fd = new FormData();
-        fd.append("file", file);
-        response = await fetch(`${API_BASE}${activeTool.endpoint}`, { method: "POST", body: fd });
-      } else {
-        if (!inputVal.trim()) { setError("Please fill in the field before verifying."); setLoading(false); return; }
-        response = await fetch(`${API_BASE}${activeTool.endpoint}`, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ [activeTool.field]: inputVal.trim() }),
-        });
-      }
-      if (!response.ok) throw new Error(`Server error ${response.status}: ${response.statusText}`);
-      const data = await response.json();
-      setResult(data);
-    } catch (e) {
-      setError(e.message || "Something went wrong. Make sure your API server is running at " + API_BASE);
-    } finally {
-      setLoading(false);
+  const API_BASE = "https://your-app-name.onrender.com"; // 🔁 Replace with your actual Render URL
+
+const handleSubmit = async () => {
+  setLoading(true); setResult(null); setError(null);
+  try {
+    let response;
+    if (activeTool.type === "file") {
+      if (!file) { setError("Please select a file to upload."); setLoading(false); return; }
+      const fd = new FormData();
+      fd.append("file", file);
+      response = await fetch(`${"https://campusguard-backend.onrender.com"}${activeTool.endpoint}`, { method: "POST", body: fd });
+    } else {
+      if (!inputVal.trim()) { setError("Please fill in the field before verifying."); setLoading(false); return; }
+      response = await fetch(`${"https://campusguard-backend.onrender.com"}${activeTool.endpoint}`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ [activeTool.field]: inputVal.trim() }),
+      });
     }
-  };
+    if (!response.ok) throw new Error(`Server error ${response.status}: ${response.statusText}`);
+    const data = await response.json();
+    setResult(data);
+  } catch (e) {
+    setError(e.message || "Something went wrong. Make sure your API server is running at " + API_BASE);
+  } finally {
+    setLoading(false);
+  }
+};
 
   return (
     <>
