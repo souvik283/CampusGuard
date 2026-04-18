@@ -1,5 +1,7 @@
 # 🚨 Fake Placement Scam Detection System  
 
+#Backend Repo: "https://github.com/Rajib-dx/campusGuard-Backend"
+
 ## 💡 Solution Overview  
 We propose a **Smart Scam Detection Platform** that helps students verify job opportunities, detect scams, and build trust in the hiring process using AI and community-driven insights.
 
