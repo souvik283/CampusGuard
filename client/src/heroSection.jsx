@@ -1,5 +1,8 @@
 import { useState, useEffect } from "react";
-import Auth from "./AuthPage";
+// import Auth from "./AuthPage";
+// import TruOfferAuth from "./TruOfferAuth";
+// import { useNavigate} from "react-router-dom"
+
 
 const ShieldIcon = () => (
   <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -97,6 +100,9 @@ const ArrowRight = () => (
 
 
 export default function HeroSection() {
+    // const navigate = useNavigate()
+
+
   const [visible, setVisible] = useState(false);
     const [hover1, setHover1] = useState(false);
     const [hover2, setHover2] = useState(false);
@@ -105,6 +111,8 @@ export default function HeroSection() {
     const t = setTimeout(() => setVisible(true), 60);
     return () => clearTimeout(t);
   }, []);
+
+  
 
   return (
     <div style={{ fontFamily: "'DM Sans', sans-serif", background: "black", minHeight: "100vh", position: "relative", overflow: "hidden" }}>
@@ -141,9 +149,7 @@ export default function HeroSection() {
           }}
           onMouseEnter={()=> setHover1(true)}
           onMouseLeave={()=> setHover1(false)}
-          onClick={()=>{
-            <Auth/>
-          }}
+          // onClick={()=> navigate("/auth")}
           >
             Register/ Login
           </button>
