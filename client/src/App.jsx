@@ -1,4 +1,4 @@
-// import HeroSection from "./heroSection";
+
 import AIProtectionSection from "./aiProtectionSection";
 import VerifiedJobsSection from "./VerifiedJobsSection";
 import PortfolioHero from "./PortfolioHero";
