@@ -1,18 +1,29 @@
 const express = require("express")
+const cors = require("cors")
 
 const authRoute = require("./routes/auth.route")
-const accountRoute = require("./routes/account.route")
-const transactionRoute = require("./routes/transaction.route")
 const cookieParser = require("cookie-parser")
 
 const app = express()
+
+const corsOption = {
+    origin: ["http://localhost:5173"],
+}
+
+app.use(cors(corsOption))
+
 app.use(express.urlencoded({ extended: false }))
 
 app.use(express.json())
 app.use(cookieParser())
 
+
 app.use("/api/auth", authRoute)
-app.use("/api/account", accountRoute)
-app.use("/api/transaction", transactionRoute)
+app.use("/api/test", (req, res)=>{
+    res.json({
+        "names": ["Aaa", "Bbb", "Ccc", "Ddd"]
+    })
+})
+
 
 module.exports = app
