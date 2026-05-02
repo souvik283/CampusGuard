@@ -1,80 +1,16 @@
 import { useState, useEffect, useRef } from "react";
+import ShieldIcon from "./components/ShieldIcon";
+import ArrowRight from "./components/ArrowRight";
+import BackIcon from "./components/BackIcon";
+import GoogleIcon from "./components/GoogleIcon";
 
-const API_BASE = "http://localhost:8000";
+const API_BASE = "https://campusguard-backend.onrender.com";
 
 /* ══════════════════════════════════════════════
    SHARED ICONS
 ══════════════════════════════════════════════ */
 
-const ShieldIcon = ({ size = 24 }) => (
-  <svg width={size} height={size} viewBox="0 0 24 24" fill="none">
-    <path
-      d="M12 2L3 6V12C3 16.418 7.03 20.618 12 22C16.97 20.618 21 16.418 21 12V6L12 2Z"
-      stroke="#3b82f6"
-      strokeWidth="1.8"
-      strokeLinejoin="round"
-      fill="rgba(29,78,216,0.15)"
-    />
-    <path
-      d="M9 12l2 2 4-4"
-      stroke="#60a5fa"
-      strokeWidth="1.8"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    />
-  </svg>
-);
 
-const ArrowRight = () => (
-  <svg
-    width="16"
-    height="16"
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="2.5"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-  >
-    <path d="M5 12h14M13 6l6 6-6 6" />
-  </svg>
-);
-
-const BackIcon = () => (
-  <svg
-    width="14"
-    height="14"
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="2.5"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-  >
-    <path d="M19 12H5M11 6l-6 6 6 6" />
-  </svg>
-);
-
-const GoogleIcon = () => (
-  <svg width="16" height="16" viewBox="0 0 24 24">
-    <path
-      fill="#4285F4"
-      d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
-    />
-    <path
-      fill="#34A853"
-      d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"
-    />
-    <path
-      fill="#FBBC05"
-      d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z"
-    />
-    <path
-      fill="#EA4335"
-      d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"
-    />
-  </svg>
-);
 
 const MailIcon = ({ color = "currentColor" }) => (
   <svg
@@ -359,7 +295,7 @@ function LandingPage({ onLogin, onGetStarted }) {
         <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
           <ShieldIcon />
           <span style={{ fontSize: 18, fontWeight: 700, color: "#e4e3e3" }}>
-            CampusGuard
+            SusScan
           </span>
         </div>
 
@@ -438,19 +374,19 @@ function LandingPage({ onLogin, onGetStarted }) {
               marginBottom: 26,
             }}
           >
-            Stop Placement Scams
+            Verify Anything. Trust Nothing
           </span>
-          <h1
+          <h1 
             style={{
-              fontSize: 54,
+              fontSize: 65,
               fontWeight: 800,
-              lineHeight: 1.07,
+              lineHeight: 1.27,
               color: "#111",
               margin: 0,
-              fontFamily: "'Syne',sans-serif",
+              fontFamily: "ui-sans-serif",
             }}
           >
-            Verify Job Offers.
+            Catch Scams Before They Catch You
           </h1>
           <h1
             style={{
@@ -458,19 +394,20 @@ function LandingPage({ onLogin, onGetStarted }) {
               fontWeight: 800,
               lineHeight: 1.07,
               color: "#2563EB",
-              margin: "0 0 18px",
-              fontFamily: "'Syne',sans-serif",
+              marginTop: "17px",
+              marginBottom: "18px",
+              fontFamily: "sans-serif",
             }}
           >
             Protect Your Future.
           </h1>
           <p
             style={{
-              fontSize: 15,
+              fontSize: 20,
               color: "#6b7280",
-              lineHeight: 1.76,
+              lineHeight: 1.7,
               marginBottom: 36,
-              maxWidth: 420,
+              maxWidth: 490,
             }}
           >
             AI-powered scam detection protecting Indian students from fraudulent
@@ -822,7 +759,7 @@ const TOOLS = [
     field: "url",
     type: "url",
     placeholder: "https://jobs.company.com/apply",
-    hint: "Paste any job posting or company URL to check for scam signals",
+    hint: "Paste any job posting or URL to check for scam signals",
   },
   {
     id: "text",
@@ -1010,7 +947,7 @@ function VerifyDashboard({ onBack }) {
     setError(null);
   };
 
-  const API_BASE = "https://your-app-name.onrender.com"; 
+  const API_BASE = "https://campusguard-backend.onrender.com"; 
 
   const handleSubmit = async () => {
     setLoading(true);
@@ -1077,7 +1014,7 @@ function VerifyDashboard({ onBack }) {
                 fontFamily: "'Syne',sans-serif",
               }}
             >
-              CampusGuard
+              SusScan
             </span>
             <span
               style={{
@@ -1116,7 +1053,7 @@ function VerifyDashboard({ onBack }) {
 
         <div className="dash-body">
           <div style={{ animation: "fadeUp .5s ease both" }}>
-            <div className="dash-title">Verify Your Placement Offer</div>
+            <div className="dash-title">Think It's Legit? Check First</div>
             <div className="dash-sub">
               Select a tool below and fill in the details — at least one input
               is required to run a check.
