@@ -1,10 +1,9 @@
 
-import AIProtectionSection from "./aiProtectionSection";
-import VerifiedJobsSection from "./VerifiedJobsSection";
-import PortfolioHero from "./PortfolioHero";
-import TruOfferFooter from "./Footer";
+import AuthPage from "./pages/AuthPage";
+import App2 from "./pages/HomePage";
+import DashBoard from "./pages/DashBoard";
 
-import Hero2Section from "./hero2section";
+import {Routes, Route} from "react-router-dom"
 
 
 
@@ -13,20 +12,14 @@ export default function App() {
     <div style={{ fontFamily: "'DM Sans', sans-serif", background:"#763764", minHeight: "100vh", position: "relative" }}>
       {/* Google Font */}
       <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700;800&display=swap" rel="stylesheet" />
+ 
 
-      {/*Navbar + Hero */}
-      {/* <HeroSection /> */}
+<Routes>
+    <Route path="/" element={<App2/>}/>
+      <Route path="/login" element={<AuthPage/>}/>
+      <Route path="/verify" element={<DashBoard/>}/>
 
-    <Hero2Section/>
-
-      {/*  AI Protection Feature Cards */}
-      <AIProtectionSection />
-
-    <VerifiedJobsSection/>
-
-    <PortfolioHero/>
-    
-    <TruOfferFooter/>
+    </Routes>
 
 
     </div>

@@ -1,165 +1,20 @@
 import { useState, useEffect, useRef } from "react";
+import {useNavigate} from "react-router-dom"
 import ShieldIcon from "./components/ShieldIcon";
 import ArrowRight from "./components/ArrowRight";
 import BackIcon from "./components/BackIcon";
 import GoogleIcon from "./components/GoogleIcon";
+import MailIcon from "./components/MailIcon";
+import LockIcon from "./components/LockIcon";
+import UserIcon from "./components/UserIcon";
+import Shield3D from "./components/Shield3D";
+import CheckCircleSm from "./components/CheckCircleSm";
+import XCircleIcon from "./components/XCircleIcon";
+
+
+import ResultDisplay from "./components/ResultDisplay";
 
 const API_BASE = "https://campusguard-backend.onrender.com";
-
-/* ══════════════════════════════════════════════
-   SHARED ICONS
-══════════════════════════════════════════════ */
-
-
-
-const MailIcon = ({ color = "currentColor" }) => (
-  <svg
-    width="18"
-    height="18"
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke={color}
-    strokeWidth="1.8"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-  >
-    <rect x="2" y="4" width="20" height="16" rx="2" />
-    <path d="M2 7l10 7 10-7" />
-  </svg>
-);
-const LockIcon = () => (
-  <svg
-    width="18"
-    height="18"
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="1.8"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-  >
-    <rect x="3" y="11" width="18" height="11" rx="2" />
-    <path d="M7 11V7a5 5 0 0 1 10 0v4" />
-  </svg>
-);
-const UserIcon = () => (
-  <svg
-    width="18"
-    height="18"
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="1.8"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-  >
-    <circle cx="12" cy="8" r="4" />
-    <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" />
-  </svg>
-);
-
-const CheckCircleIcon = ({ size = 22, color = "#22c55e" }) => (
-  <svg width={size} height={size} viewBox="0 0 24 24" fill="none">
-    <circle
-      cx="12"
-      cy="12"
-      r="10"
-      fill={color}
-      fillOpacity="0.15"
-      stroke={color}
-      strokeWidth="1.5"
-    />
-    <path
-      d="M8 12l3 3 5-5"
-      stroke={color}
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    />
-  </svg>
-);
-
-const XCircleIcon = ({ size = 22 }) => (
-  <svg width={size} height={size} viewBox="0 0 24 24" fill="none">
-    <circle
-      cx="12"
-      cy="12"
-      r="10"
-      fill="#ef4444"
-      fillOpacity="0.15"
-      stroke="#ef4444"
-      strokeWidth="1.5"
-    />
-    <path
-      d="M15 9l-6 6M9 9l6 6"
-      stroke="#ef4444"
-      strokeWidth="2"
-      strokeLinecap="round"
-    />
-  </svg>
-);
-
-const CheckCircleSm = () => (
-  <svg
-    width="15"
-    height="15"
-    viewBox="0 0 16 16"
-    fill="none"
-    style={{ flexShrink: 0 }}
-  >
-    <circle cx="8" cy="8" r="7" stroke="#2563EB" strokeWidth="1.2" />
-    <path
-      d="M5 8L7 10L11 6"
-      stroke="#2563EB"
-      strokeWidth="1.2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    />
-  </svg>
-);
-
-/* ══════════════════════════════════════════════
-   LANDING PAGE
-══════════════════════════════════════════════ */
-
-const Shield3D = () => (
-  <svg width="210" height="210" viewBox="0 0 210 210" fill="none">
-    <defs>
-      <radialGradient id="sg" cx="38%" cy="28%" r="72%">
-        <stop offset="0%" stopColor="#60a5fa" />
-        <stop offset="60%" stopColor="#2563eb" />
-        <stop offset="100%" stopColor="#1e3a8a" />
-      </radialGradient>
-      <filter id="sf">
-        <feDropShadow
-          dx="0"
-          dy="12"
-          stdDeviation="18"
-          floodColor="#1d4ed8"
-          floodOpacity="0.45"
-        />
-      </filter>
-    </defs>
-    <path
-      d="M105 16L28 52V106C28 150 65 180 105 194C145 180 182 150 182 106V52L105 16Z"
-      fill="url(#sg)"
-      filter="url(#sf)"
-    />
-    <path
-      d="M105 16L28 52V106C28 150 65 180 105 194C145 180 182 150 182 106V52L105 16Z"
-      fill="none"
-      stroke="rgba(255,255,255,0.22)"
-      strokeWidth="1.5"
-    />
-    <path
-      d="M80 106L96 121L132 87"
-      stroke="white"
-      strokeWidth="7"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    />
-  </svg>
-);
 
 const LANDING_FEATURES = [
   {
@@ -266,6 +121,8 @@ function LandingPage({ onLogin, onGetStarted }) {
     return () => clearTimeout(t);
   }, []);
 
+  const navigate = useNavigate()
+
   return (
     <div
       style={{
@@ -314,8 +171,8 @@ function LandingPage({ onLogin, onGetStarted }) {
             }}
             onMouseEnter={() => setHover1(true)}
             onMouseLeave={() => setHover1(false)}
-            onClick={onLogin}
-            // onClick={()=> navigate("/auth")}
+            // onClick={onLogin}
+            onClick={()=> navigate("/login")}
           >
             Register/ Login
           </button>
@@ -376,7 +233,7 @@ function LandingPage({ onLogin, onGetStarted }) {
           >
             Verify Anything. Trust Nothing
           </span>
-          <h1 
+          <h1
             style={{
               fontSize: 65,
               fontWeight: 800,
@@ -803,131 +660,6 @@ const TOOLS = [
   },
 ];
 
-function ResultDisplay({ result }) {
-  if (!result) return null;
-  const text =
-    typeof result === "string" ? result : JSON.stringify(result, null, 2);
-
-  // console.log(result);
-
-  const score = result.score;
-  // console.log(score);
-  const lower = text.toLowerCase();
-  const isSafe =
-    score >= 80 ||
-    lower.includes("safe") ||
-    lower.includes("verified") ||
-    lower.includes("genuine") ||
-    lower.includes("authentic") ||
-    lower.includes("real");
-  const isDanger =
-    lower.includes("scam") ||
-    lower.includes("fraud") ||
-    lower.includes("suspicious") ||
-    lower.includes("fake") ||
-    lower.includes("danger") ||
-    lower.includes("malicious") ||
-    lower.includes("phishing");
-  const status = isDanger ? "danger" : isSafe ? "safe" : "warning";
-  const label = isDanger
-    ? "⚠️ Suspicious / High Risk"
-    : isSafe
-      ? "✅ Appears Legitimate"
-      : "🔍 Analysis Complete";
-
-  const reasons = result.reasons || result.ai_flags || result.rule_flags || [];
-
-  return (
-    <div className="result-card">
-      <div className={`rc-header ${status}`}>
-        {isDanger ? (
-          <XCircleIcon size={22} />
-        ) : (
-          <CheckCircleIcon size={22} color={isSafe ? "#22c55e" : "#d97706"} />
-        )}
-        <span className={`rc-title ${status}`}>{label}</span>
-        <span className={`rc-badge ${status}`}>
-          {status === "danger"
-            ? "High Risk"
-            : status === "safe"
-              ? "Low Risk"
-              : "Review"}
-        </span>
-      </div>
-
-      {/* editing start */}
-
-      <div className="rc-body">
-        <pre>
-        
-            {/* Content */}
-            <div className="p-4 text-gray-700 space-y-2">
-              {/* Dynamic Fields */}
-              {result.email && (
-                <p>
-                  <strong>Email:</strong> {result.email}
-                </p>
-              )}
-
-              {result.url && (
-                <p>
-                  <strong>URL:</strong> {result.url}
-                </p>
-              )}
-
-              {result.domain && (
-                <p>
-                  <strong>Domain:</strong> {result.domain}
-                </p>
-              )}
-
-              {result.linkedin_url && (
-                <p>
-                  <strong>LinkedIn:</strong> {result.linkedin_url}
-                </p>
-              )}
-
-              {result.score !== undefined && (
-                <p>
-                  <strong>Score:</strong>{" "}
-                  <span className="font-semibold">{result.score}</span>
-                </p>
-              )}
-
-              {result.status && (
-                <p>
-                  <strong>Status:</strong>{" "}
-                  <span className={isSafe ? "text-green-600" : "text-red-600"}>
-                    {result.status}
-                  </span>
-                </p>
-              )}
-
-              {/* Reasons / Flags */}
-              {reasons.length > 0 && (
-                <div>
-                  <strong>Reasons:</strong>
-                  <ul className="list-disc ml-5 mt-1 space-y-1">
-                    {reasons.map((r, i) => (
-                      <li key={i}>{r}</li>
-                    ))}
-                  </ul>
-                </div>
-              )}
-
-              {/* Summary */}
-              {result.summary && (
-                <div className="mt-2 p-3 bg-gray-50 rounded-md text-sm">
-                  <strong>Summary:</strong> {result.summary}
-                </div>
-              )}
-            </div>
-          
-        </pre>
-      </div>
-    </div>
-  );
-}
 
 function VerifyDashboard({ onBack }) {
   const [activeTool, setActiveTool] = useState(TOOLS[0]);
@@ -947,7 +679,7 @@ function VerifyDashboard({ onBack }) {
     setError(null);
   };
 
-  const API_BASE = "https://campusguard-backend.onrender.com"; 
+  const API_BASE = "https://campusguard-backend.onrender.com";
 
   const handleSubmit = async () => {
     setLoading(true);
@@ -964,7 +696,7 @@ function VerifyDashboard({ onBack }) {
         const fd = new FormData();
         fd.append("file", file);
         response = await fetch(
-          `${"https://campusguard-backend.onrender.com"}${activeTool.endpoint}`,
+          `${API_BASE}${activeTool.endpoint}`,
           { method: "POST", body: fd },
         );
       } else {
@@ -982,9 +714,12 @@ function VerifyDashboard({ onBack }) {
           },
         );
       }
+      if(!response){
+        console.log("hiiii")
+      }
       if (!response.ok)
         throw new Error(
-          `Server error ${response.status}: ${response.statusText}`,
+       `Server error ${response.status}: ${response.statusText}`,
         );
       const data = await response.json();
       setResult(data);

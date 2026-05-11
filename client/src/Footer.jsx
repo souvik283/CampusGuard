@@ -1,4 +1,6 @@
 import { useState, useEffect } from "react";
+import {useNavigate} from "react-router-dom"
+
 
 const ShieldIcon = () => (
   <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -26,6 +28,8 @@ export default function TruOfferFooter() {
     const t = setTimeout(() => setVisible(true), 100);
     return () => clearTimeout(t);
   }, []);
+
+  const navigate = useNavigate()
 
   return (
     <div style={{ fontFamily: "'Arial', sans-serif", width: "100%" }}>
@@ -91,9 +95,13 @@ export default function TruOfferFooter() {
           </p>
 
           {/* CTA Button */}
+        
           <button
             onMouseEnter={() => setHovered(true)}
             onMouseLeave={() => setHovered(false)}
+            onClick={()=>{
+              navigate("/login")
+            }}
             style={{
               display: "inline-flex",
               alignItems: "center",
