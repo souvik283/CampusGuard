@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import Navbar from "../components/Navbar";
 
 
 const styles = `
@@ -348,7 +349,9 @@ export default function AuthPage() {
   return (
     <>
       <style>{styles}</style>
+      <Navbar/>
       <div className="auth-root">
+        
         <div className="glow-1" />
         <div className="glow-2" />
 

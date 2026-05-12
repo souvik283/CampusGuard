@@ -1,9 +1,12 @@
 import React from 'react'
-
+import { useNavigate } from 'react-router-dom';
 import { useState, useRef } from 'react';
 
 import ShieldIcon from '../components/ShieldIcon';
 import BackIcon from '../components/BackIcon';
+import ResultDisplay from '../components/ResultDisplay';
+import Navbar from '../components/Navbar';
+
 
 const dashCSS = `
 @import url('https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@400;500;600;700&display=swap');
@@ -111,7 +114,11 @@ const TOOLS = [
 ];
 
 
-function DashBoard({ onBack }) {
+
+
+
+
+function DashBoard() {
   const [activeTool, setActiveTool] = useState(TOOLS[0]);
   const [inputVal, setInputVal] = useState("");
   const [file, setFile] = useState(null);
@@ -184,57 +191,15 @@ function DashBoard({ onBack }) {
     }
   };
 
+  const navigate = useNavigate()
+
+
   return (
     <>
       <style>{dashCSS}</style>
       <div className="dash-root">
-        <nav className="dash-nav">
-          <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-            <ShieldIcon size={24} />
-            <span
-              style={{
-                fontSize: 18,
-                fontWeight: 800,
-                color: "#111",
-                fontFamily: "'Syne',sans-serif",
-              }}
-            >
-              SusScan
-            </span>
-            <span
-              style={{
-                marginLeft: 8,
-                background: "#eff6ff",
-                color: "#2563eb",
-                fontSize: 10.5,
-                fontWeight: 700,
-                padding: "3px 10px",
-                borderRadius: 20,
-              }}
-            >
-              VERIFY DASHBOARD
-            </span>
-          </div>
-          <button
-            onClick={onBack}
-            style={{
-              background: "none",
-              border: "1.5px solid #e5e7eb",
-              borderRadius: 9,
-              padding: "7px 16px",
-              cursor: "pointer",
-              fontSize: 13.5,
-              color: "#555",
-              fontFamily: "'DM Sans',sans-serif",
-              display: "flex",
-              alignItems: "center",
-              gap: 6,
-              fontWeight: 500,
-            }}
-          >
-            <BackIcon /> Back to Home
-          </button>
-        </nav>
+        
+        <Navbar/>
 
         <div className="dash-body">
           <div style={{ animation: "fadeUp .5s ease both" }}>
